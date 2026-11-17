@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Noto+Serif+Sinhala:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg-cream: #FAF6EF;
+  --bg-card: #FDFBF7;
+  --bg-beige: #F1ECE1;
+  --burgundy-primary: #581C24;
+  --burgundy-dark: #3F1218;
+  --burgundy-light: #732631;
+  --gold-primary: #C89B3C;
+  --gold-light: #E2BC6B;
+  --gold-border: rgba(200, 155, 60, 0.45);
+  --text-dark: #2B2121;
+  --text-muted: #6E6262;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  background-color: #FAF6EF;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(200, 155, 60, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 50% 100%, rgba(88, 28, 36, 0.03) 0%, transparent 60%);
+}
+
+/* Serif font for editorial luxury heading */
+.font-serif {
+  font-family: 'Playfair Display', 'Cormorant Garamond', 'Noto Serif Sinhala', Georgia, serif;
+}
+
+.font-script {
+  font-family: 'Great Vibes', 'Brush Script MT', cursive;
+}
+
+.font-sinhala {
+  font-family: 'Noto Serif Sinhala', 'Playfair Display', serif;
+}
+
+.font-tamil {
+  font-family: 'Noto Sans Tamil', sans-serif;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF6EF;
+}
+::-webkit-scrollbar-thumb {
+  background: #C89B3C;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #581C24;
+}
+
+/* Delicate subtle box shadows */
+.card-shadow {
+  box-shadow: 0 10px 30px -5px rgba(88, 28, 36, 0.06), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
+}
+
+.btn-burgundy {
+  background-color: #581C24;
+  color: #FFFFFF;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-burgundy:hover {
+  background-color: #43131A;
+  box-shadow: 0 6px 20px rgba(88, 28, 36, 0.25);
+  transform: translateY(-1px);
+}
