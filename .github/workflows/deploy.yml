@@ -36,6 +36,9 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /Wedding-Invitation
           GITHUB_ACTIONS: "true"
 
+      - name: Add .nojekyll file
+        run: touch ./out/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
