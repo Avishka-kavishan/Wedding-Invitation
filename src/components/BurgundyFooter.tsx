@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Translations } from "@/data/translations";
+import { assetPath } from "@/utils/paths";
 
 interface BurgundyFooterProps {
   t: Translations;
@@ -14,7 +15,7 @@ export function BurgundyFooter({ t }: BurgundyFooterProps) {
         <div className="relative w-28 h-28 flex items-center justify-center mb-4">
           <div className="absolute inset-0 w-full h-full pointer-events-none animate-[spin_50s_linear_infinite]">
             <Image
-              src="/images/sri-lankan/statue_balanced_circle.png"
+              src={assetPath("/images/sri-lankan/statue_balanced_circle.png")}
               alt="Carved Stone Relief"
               fill
               className="object-contain"
@@ -22,7 +23,7 @@ export function BurgundyFooter({ t }: BurgundyFooterProps) {
           </div>
           <div className="relative w-[64%] h-[64%] rounded-full overflow-hidden border border-[#D4CFC5]/80 shadow-md bg-[#FAF6EF]">
             <Image
-              src="/images/sri-lankan/couple_pure_center.png"
+              src={assetPath("/images/sri-lankan/couple_pure_center.png")}
               alt="Amaya & Supun"
               fill
               className="object-contain scale-110"

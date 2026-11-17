@@ -6,6 +6,7 @@ import { Calendar, Clock, MapPin, Heart, ChevronDown } from "lucide-react";
 import { BotanicalCorner, FloralArchCrown, GoldDivider, SriLankanOilLamp } from "./BotanicalDecor";
 import { CoupleInfo } from "@/data/weddingData";
 import { generateGoogleCalendarUrl, downloadIcsFile } from "@/utils/calendar";
+import { assetPath } from "@/utils/paths";
 
 interface HeroSectionProps {
   couple: CoupleInfo;
@@ -109,7 +110,7 @@ export function HeroSection({ couple }: HeroSectionProps) {
           {/* Inner arch border */}
           <div className="relative w-full h-full rounded-t-full rounded-b-2xl overflow-hidden border border-[#d4a34b]/40">
             <Image
-              src="/images/sri-lankan/couple_hero.jpg"
+              src={assetPath("/images/sri-lankan/couple_hero.jpg")}
               alt={`${couple.groomName} & ${couple.brideName}`}
               fill
               className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"

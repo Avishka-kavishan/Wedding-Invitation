@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { MailOpen, Heart, Sparkles } from "lucide-react";
 import { BotanicalCorner, GoldDivider } from "./BotanicalDecor";
+import { assetPath } from "@/utils/paths";
 
 interface CoverModalProps {
   onOpen: () => void;
@@ -86,7 +87,7 @@ export function CoverModal({
         <div className="relative w-44 h-56 sm:w-52 sm:h-64 my-3 rounded-t-full rounded-b-2xl overflow-hidden border-2 border-[#d4a34b] p-1 shadow-inner bg-[#1e262a]">
           <div className="relative w-full h-full rounded-t-full rounded-b-xl overflow-hidden">
             <Image
-              src="/images/sri-lankan/couple_hero.jpg"
+              src={assetPath("/images/sri-lankan/couple_hero.jpg")}
               alt={`${groomName} & ${brideName}`}
               fill
               className="object-cover hover:scale-105 transition-transform duration-700"

@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { CarvedStatueSvg } from "./CarvedStatueSvg";
+import { assetPath } from "@/utils/paths";
 
 export function KandyanMandalaEmblem({
   className = "",
@@ -22,7 +23,7 @@ export function KandyanMandalaEmblem({
       <div className="absolute inset-0 w-full h-full pointer-events-none animate-[spin_50s_linear_infinite]">
         <CarvedStatueSvg color="#D4CFC5" className="absolute inset-0" />
         <Image
-          src="/images/sri-lankan/statue_balanced_circle.png"
+          src={assetPath("/images/sri-lankan/statue_balanced_circle.png")}
           alt="Traditional Kandyan Carved Stone Relief"
           fill
           className="object-contain"
@@ -33,7 +34,7 @@ export function KandyanMandalaEmblem({
       {/* 3. STATIONARY COUPLE IN THE CENTER (Does not rotate - stays upright and still) */}
       <div className="relative w-[64%] h-[64%] rounded-full overflow-hidden border border-[#D4CFC5] shadow-inner z-10 bg-[#FAF6EF]">
         <Image
-          src="/images/sri-lankan/couple_pure_center.png"
+          src={assetPath("/images/sri-lankan/couple_pure_center.png")}
           alt="Amaya & Supun - Traditional Sri Lankan Wedding"
           fill
           className="object-contain scale-110"
