@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Globe, ChevronDown, Check, Menu, X } from "lucide-react";
+import { Globe, ChevronDown, Check } from "lucide-react";
 import { Language, translations } from "@/data/translations";
 
 interface HeaderNavProps {
@@ -11,7 +11,6 @@ interface HeaderNavProps {
 
 export function HeaderNav({ currentLang, onLanguageChange }: HeaderNavProps) {
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const t = translations[currentLang];
 
   const languages: Array<{ code: Language; label: string; nativeName: string }> = [
@@ -21,7 +20,6 @@ export function HeaderNav({ currentLang, onLanguageChange }: HeaderNavProps) {
   ];
 
   const scrollTo = (id: string) => {
-    setIsMenuOpen(false);
     try {
       const el = document.getElementById(id);
       if (el) {
@@ -38,23 +36,6 @@ export function HeaderNav({ currentLang, onLanguageChange }: HeaderNavProps) {
         {/* Left Monogram / Logo */}
         <button onClick={() => scrollTo("hero")} className="header-monogram font-serif">
           A|S
-        </button>
-
-        {/* Middle Menu links */}
-        <nav className="header-nav-links">
-          <button onClick={() => scrollTo("celebration")} className="nav-item-btn">{t.nav.details}</button>
-          <button onClick={() => scrollTo("timeline")} className="nav-item-btn">{t.nav.timeline}</button>
-          <button onClick={() => scrollTo("info")} className="nav-item-btn">{t.nav.info}</button>
-        </nav>
-
-        {/* Mobile menu trigger */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="header-menu-pill-btn"
-          aria-label="Toggle Navigation Menu"
-        >
-          {isMenuOpen ? <X style={{ width: 14, height: 14 }} /> : <Menu style={{ width: 14, height: 14 }} />}
-          <span>Menu</span>
         </button>
 
         {/* Right Actions: Language Switcher + Book RSVP button */}
@@ -101,17 +82,6 @@ export function HeaderNav({ currentLang, onLanguageChange }: HeaderNavProps) {
           </button>
         </div>
       </div>
-
-      {/* Mobile Drawer Menu */}
-      {isMenuOpen && (
-        <div className="mobile-nav-drawer">
-          <button onClick={() => scrollTo("hero")} className="mobile-nav-link">Home</button>
-          <button onClick={() => scrollTo("celebration")} className="mobile-nav-link">{t.nav.details}</button>
-          <button onClick={() => scrollTo("timeline")} className="mobile-nav-link">{t.nav.timeline}</button>
-          <button onClick={() => scrollTo("info")} className="mobile-nav-link">{t.nav.info}</button>
-          <button onClick={() => scrollTo("rsvp")} className="mobile-nav-link rsvp-highlight">{t.nav.rsvpNow}</button>
-        </div>
-      )}
     </header>
   );
 }
