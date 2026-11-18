@@ -6,6 +6,7 @@ import { Sparkles, Maximize2 } from "lucide-react";
 import { BotanicalCorner } from "./BotanicalDecor";
 import { GalleryPhoto } from "@/data/weddingData";
 import { LightboxModal } from "./LightboxModal";
+import { assetPath } from "@/utils/paths";
 
 interface GallerySectionProps {
   photos: GalleryPhoto[];
@@ -97,7 +98,7 @@ export function GallerySection({ photos }: GallerySectionProps) {
               className="relative h-64 sm:h-72 rounded-2xl overflow-hidden border border-[#d4a34b]/30 cursor-pointer group shadow-lg"
             >
               <Image
-                src={photo.url}
+                src={assetPath(photo.url)}
                 alt={photo.title}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"

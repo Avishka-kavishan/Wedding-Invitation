@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Heart, Sparkles, Calendar } from "lucide-react";
 import { BotanicalCorner, GoldDivider } from "./BotanicalDecor";
 import { StoryItem } from "@/data/weddingData";
+import { assetPath } from "@/utils/paths";
 
 interface StorySectionProps {
   stories: StoryItem[];
@@ -57,7 +58,7 @@ export function StorySection({
               {/* Photo */}
               <div className="relative w-full h-52 sm:h-60 overflow-hidden bg-[#161c20]">
                 <Image
-                  src={story.image}
+                  src={assetPath(story.image)}
                   alt={story.title}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"

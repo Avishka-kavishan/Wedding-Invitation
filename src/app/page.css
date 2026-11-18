@@ -1,0 +1,14 @@
+/* Page layout wrapper */
+.page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  background-color: #FAF6EF;
+  color: #2B2121;
+}
+
+.page-main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

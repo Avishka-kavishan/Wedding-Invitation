@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Calendar, MapPin, Clock } from "lucide-react";
+import { ChevronRight, Calendar, MapPin, Clock } from "lucide-react";
 import { KandyanMandalaEmblem } from "./KandyanMandalaEmblem";
 import { Translations } from "@/data/translations";
 import { generateGoogleCalendarUrl, downloadIcsFile } from "@/utils/calendar";
@@ -12,22 +12,13 @@ interface HeroEditorialCardProps {
   onOpenMap: () => void;
 }
 
-export function HeroEditorialCard({
-  t,
-  onOpenRsvp,
-  onOpenMap,
-}: HeroEditorialCardProps) {
+export function HeroEditorialCard({ t, onOpenRsvp, onOpenMap }: HeroEditorialCardProps) {
   const [timeLeft, setTimeLeft] = useState<{
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
+    days: number; hours: number; minutes: number; seconds: number;
   }>({ days: 90, hours: 20, minutes: 30, seconds: 0 });
 
   useEffect(() => {
-    // August 20, 2026 08:45 AM
     const target = new Date("2026-08-20T08:45:00").getTime();
-
     const updateTimer = () => {
       const now = new Date().getTime();
       const difference = target - now;
@@ -35,17 +26,13 @@ export function HeroEditorialCard({
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const minutes = Math.floor(
-        (difference % (1000 * 60 * 60)) / (1000 * 60)
-      );
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-      setTimeLeft({ days, hours, minutes, seconds });
+      setTimeLeft({
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((difference % (1000 * 60)) / 1000),
+      });
     };
-
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
@@ -71,84 +58,79 @@ export function HeroEditorialCard({
   };
 
   return (
-    <section id="hero" className="w-full flex justify-center py-6 px-3 sm:px-4">
-      {/* Outer Card Container matching screenshot */}
-      <div className="relative w-full max-w-xl bg-[#FDFBF7] rounded-[32px] sm:rounded-[40px] p-6 sm:p-10 border border-[#C89B3C]/35 shadow-[0_12px_45px_rgba(88,28,36,0.06)] flex flex-col items-center text-center">
-        {/* Subtle decorative inner border line */}
-        <div className="absolute inset-2.5 sm:inset-3 rounded-[26px] sm:rounded-[34px] border border-[#C89B3C]/20 pointer-events-none" />
+    <section id="hero" className="hero-section">
+      <div className="hero-card">
+        <div className="hero-inner-border" />
 
-        {/* Subtitle matching screenshot */}
-        <p className="text-[11px] sm:text-xs uppercase tracking-[0.3em] text-[#581C24]/70 font-semibold mb-3">
-          {t.hero.subtitle}
-        </p>
+        {/* 1. Header Subtitle */}
+        <p className="hero-subtitle">{t.hero.subtitle}</p>
 
-        {/* Couple Names in Serif */}
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#581C24] font-medium tracking-tight mb-6">
-          {t.hero.coupleNames}
+        {/* 2. Couple Names in Serif */}
+        <h1 className="hero-title font-serif">
+          <span>Amaya</span>
+          <span className="hero-ampersand">&amp;</span>
+          <span>Supun</span>
         </h1>
 
-        {/* Center Circular Illustration / Mandala Emblem matching screenshot */}
-        <div className="my-2 flex justify-center">
-          <KandyanMandalaEmblem size={270} />
+        {/* 3. Mandala: Rotating Carved Statue + Animated Couple Image */}
+        <div className="hero-mandala">
+          <KandyanMandalaEmblem size={300} />
         </div>
 
-        {/* Date & Location block matching screenshot */}
-        <div className="mt-6 mb-4 space-y-1">
-          <p className="text-xs uppercase tracking-[0.2em] text-[#581C24]/75 font-semibold">
-            {t.hero.date}
-          </p>
-          <h2 className="font-serif text-xl sm:text-2xl text-[#581C24] font-medium">
-            {t.hero.venue}
-          </h2>
-          <p className="text-xs text-[#581C24]/70 font-medium">
-            {t.hero.subVenue} &bull; {t.hero.city}
-          </p>
+        {/* 4. Celebration Tagline & Details */}
+        <div className="hero-details-block">
+          <p className="hero-tagline">{t.hero.tagline}</p>
+          <p className="hero-ceremony-type">{t.hero.subVenue}</p>
+          <p className="hero-city-name">{t.hero.city}</p>
         </div>
 
-        {/* Primary CTA: Confirm Attendance Button */}
-        <div className="w-full max-w-xs mt-3 space-y-2.5">
-          <button
-            onClick={onOpenRsvp}
-            className="w-full py-3.5 px-6 rounded-xl bg-[#581C24] hover:bg-[#43131A] text-white font-medium text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
-          >
-            {t.hero.confirmAttendance}
+        {/* 5. Primary CTA: Confirm Attendance */}
+        <div className="hero-cta-wrapper">
+          <button onClick={onOpenRsvp} className="hero-confirm-btn">
+            <span>{t.hero.confirmAttendance}</span>
+            <ChevronRight className="hero-btn-chevron" />
           </button>
 
-          <div className="flex items-center justify-center gap-4 text-xs">
-            <button
-              onClick={handleAddToCalendar}
-              className="text-[#581C24] hover:text-[#C89B3C] font-semibold underline underline-offset-4 tracking-wider uppercase text-[11px] transition-colors"
-            >
+          {/* 6. Add to Calendar link */}
+          <div className="hero-calendar-links">
+            <button onClick={handleAddToCalendar} className="hero-link-btn">
               {t.hero.addToCalendar}
             </button>
-            <span className="text-[#C89B3C]">&bull;</span>
-            <button
-              onClick={handleDownloadIcs}
-              className="text-[#581C24]/80 hover:text-[#581C24] font-medium text-[11px] tracking-wide transition-colors"
-            >
+            <span className="hero-link-dot">&bull;</span>
+            <button onClick={handleDownloadIcs} className="hero-link-btn-sm">
               {t.hero.downloadIcs}
             </button>
           </div>
         </div>
 
-        {/* Thin divider */}
-        <div className="w-full max-w-xs h-[1px] bg-[#C89B3C]/25 my-6" />
+        {/* 7. Timeline Highlights: 8:45 AM Poruwa Ceremony | 1:30 PM Grand Reception */}
+        <div className="hero-schedule-row">
+          <div className="hero-schedule-col">
+            <span className="hero-schedule-time">{t.hero.event1Highlight}</span>
+          </div>
+          <div className="hero-schedule-divider" />
+          <div className="hero-schedule-col">
+            <span className="hero-schedule-time">{t.hero.event2Highlight}</span>
+          </div>
+        </div>
 
-        {/* Countdown summary matching screenshot */}
-        <div className="flex flex-col items-center">
-          <p className="text-xs font-serif text-[#581C24] font-medium flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-[#C89B3C]" />
-            <span>
-              in {timeLeft.days} {t.hero.countdownDays} &bull; {timeLeft.hours} {t.hero.countdownHours} &bull; {timeLeft.minutes} {t.hero.countdownMinutes}
-            </span>
-          </p>
-          <button
-            onClick={onOpenMap}
-            className="text-[11px] uppercase tracking-widest text-[#581C24]/70 hover:text-[#581C24] mt-1.5 flex items-center gap-1 transition-colors"
-          >
-            <MapPin className="w-3 h-3 text-[#C89B3C]" />
-            <span>{t.hero.venue} &bull; {t.hero.city}</span>
-          </button>
+        {/* 8. Date and Venue Display matching screenshot */}
+        <div className="hero-venue-block">
+          <p className="hero-date-text">{t.hero.date}</p>
+          <h2 className="hero-venue-name font-serif">{t.hero.venue}</h2>
+        </div>
+
+        {/* Subtle Countdown Bar */}
+        <div className="hero-countdown-pill" onClick={onOpenMap} title="View Venue Map">
+          <Clock className="hero-clock-icon" />
+          <span>
+            in {timeLeft.days} {t.hero.countdownDays} &bull; {timeLeft.hours} {t.hero.countdownHours} &bull; {timeLeft.minutes} {t.hero.countdownMinutes}
+          </span>
+          <span className="hero-countdown-dot">&bull;</span>
+          <span className="hero-countdown-map-link">
+            <MapPin className="hero-map-pin-icon" />
+            <span>Map</span>
+          </span>
         </div>
       </div>
     </section>

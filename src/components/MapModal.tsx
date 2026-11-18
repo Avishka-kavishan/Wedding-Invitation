@@ -24,33 +24,25 @@ export function MapModal({
 }: MapModalProps) {
   if (!isOpen) return null;
 
-  const venueName = locationName;
   const venueAddress = `${locationAddress}${locationCity ? `, ${locationCity}` : ""}`;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-[#FDFBF7] border border-[#C89B3C]/50 rounded-3xl overflow-hidden shadow-2xl">
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#C89B3C]/20 bg-[#FAF6EF]">
-          <div className="flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-[#581C24]" />
+    <div className="modal-overlay">
+      <div className="map-modal-box">
+        <div className="map-modal-header">
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <MapPin style={{ width: "1.25rem", height: "1.25rem", color: "#581C24" }} />
             <div>
-              <h3 className="font-serif text-lg text-[#581C24] font-medium">
-                {venueName}
-              </h3>
-              <p className="text-xs text-gray-500">{venueAddress}</p>
+              <h3 className="map-modal-venue font-serif">{locationName}</h3>
+              <p className="map-modal-addr">{venueAddress}</p>
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="p-1.5 rounded-full hover:bg-black/5 text-[#581C24] transition-colors"
-          >
-            <X className="w-5 h-5" />
+          <button onClick={onClose} className="map-close-btn">
+            <X style={{ width: "1.25rem", height: "1.25rem" }} />
           </button>
         </div>
 
-        {/* Map iframe */}
-        <div className="w-full h-80 sm:h-96 bg-gray-100">
+        <div className="map-frame">
           <iframe
             src={mapEmbedUrl}
             width="100%"
@@ -63,29 +55,19 @@ export function MapModal({
           />
         </div>
 
-        {/* Footer actions */}
-        <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-[#FAF6EF] border-t border-[#C89B3C]/20">
-          <span className="text-xs text-gray-600">
-            Complimentary valet parking available at Galle Face Hotel entrance.
-          </span>
-          <div className="flex items-center gap-2">
-            <a
-              href={mapExternalUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#581C24] text-white font-medium text-xs uppercase tracking-wider hover:bg-[#43131A] transition-all"
-            >
+        <div className="map-footer">
+          <span className="map-note">Complimentary valet parking available at Galle Face Hotel entrance.</span>
+          <div className="map-actions">
+            <a href={mapExternalUrl} target="_blank" rel="noopener noreferrer" className="map-btn-primary">
               <span>Open in Google Maps</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink style={{ width: "0.875rem", height: "0.875rem" }} />
             </a>
             <a
-              href={`https://waze.com/ul?q=${encodeURIComponent(venueName + " " + venueAddress)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#FAF6EF] border border-[#581C24]/30 text-[#581C24] font-medium text-xs uppercase tracking-wider hover:bg-[#581C24]/10 transition-all"
+              href={`https://waze.com/ul?q=${encodeURIComponent(locationName + " " + venueAddress)}`}
+              target="_blank" rel="noopener noreferrer" className="map-btn-secondary"
             >
               <span>Waze</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink style={{ width: "0.875rem", height: "0.875rem" }} />
             </a>
           </div>
         </div>

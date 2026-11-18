@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Heart } from "lucide-react";
 import { BotanicalCorner, GoldDivider } from "./BotanicalDecor";
 import { CoupleInfo } from "@/data/weddingData";
+import { assetPath } from "@/utils/paths";
 
 function InstagramIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
   return (
@@ -87,7 +88,7 @@ export function CoupleSection({ couple, quote }: CoupleSectionProps) {
             <div className="relative w-48 h-60 rounded-t-full rounded-b-2xl overflow-hidden border-2 border-[#d4a34b] p-1 shadow-md bg-[#192125] mb-5">
               <div className="relative w-full h-full rounded-t-full rounded-b-xl overflow-hidden">
                 <Image
-                  src={couple.groomPhoto}
+                  src={assetPath(couple.groomPhoto)}
                   alt={couple.groomFullName}
                   fill
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
@@ -139,7 +140,7 @@ export function CoupleSection({ couple, quote }: CoupleSectionProps) {
             <div className="relative w-48 h-60 rounded-t-full rounded-b-2xl overflow-hidden border-2 border-[#d4a34b] p-1 shadow-md bg-[#192125] mb-5">
               <div className="relative w-full h-full rounded-t-full rounded-b-xl overflow-hidden">
                 <Image
-                  src={couple.bridePhoto}
+                  src={assetPath(couple.bridePhoto)}
                   alt={couple.brideFullName}
                   fill
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-500"

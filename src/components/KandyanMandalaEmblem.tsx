@@ -2,42 +2,48 @@
 
 import React from "react";
 import Image from "next/image";
-import { CarvedStatueSvg } from "./CarvedStatueSvg";
 import { assetPath } from "@/utils/paths";
+
+interface KandyanMandalaEmblemProps {
+  className?: string;
+  size?: number;
+}
 
 export function KandyanMandalaEmblem({
   className = "",
-}: {
-  className?: string;
-  size?: number;
-}) {
+  size = 320,
+}: KandyanMandalaEmblemProps) {
   return (
     <div
-      className={`relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[350px] md:h-[350px] flex items-center justify-center select-none ${className}`}
+      className={`mandala-emblem-wrap ${className}`}
+      style={{ "--mandala-size": `${size}px` } as React.CSSProperties}
     >
-      {/* 1. Subtle warm ambient glow behind the statue matching the original stone palette */}
-      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,_rgba(212,207,197,0.35)_0%,_transparent_72%)] pointer-events-none" />
+      {/* 1. Subtle warm ambient glow behind the carved stone medallion */}
+      <div className="mandala-glow-ambient" />
 
-      {/* 2. THE CARVED STATUE (BALANCED CIRCLE - ZERO WOBBLE) */}
-      {/* Mathematically balanced circle rotating in a 360° celestial loop with pure stone color */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none animate-[spin_50s_linear_infinite]">
-        <CarvedStatueSvg color="#D4CFC5" className="absolute inset-0" />
+      {/* 2. CENTER COUPLE PORTRAIT (ALIVE, GENTLE BREATHING & ROMANTIC GLEAM) */}
+      <div className="mandala-couple-stage">
+        <div className="mandala-couple-animated">
+          <Image
+            src={assetPath("/images/sri-lankan/couple_balanced_center.png")}
+            alt="Amaya & Supun - Traditional Sri Lankan Wedding"
+            fill
+            className="mandala-couple-img"
+            priority
+          />
+        </div>
+        {/* Soft romantic light beam/gleam passing over the couple */}
+        <div className="mandala-couple-gleam" />
+      </div>
+
+      {/* 3. THE AUTHENTIC FULLY CIRCULAR CARVED STONE STATUE RING (ROTATING IN A 360° CELESTIAL LOOP) */}
+      {/* 100% mathematically balanced circular geometry with concentric stone grooves and outer baroque acanthus filigree */}
+      <div className="mandala-statue-ring" title="Carved Sri Lankan Stone Relief Ring">
         <Image
           src={assetPath("/images/sri-lankan/statue_balanced_circle.png")}
           alt="Traditional Kandyan Carved Stone Relief"
           fill
-          className="object-contain"
-          priority
-        />
-      </div>
-
-      {/* 3. STATIONARY COUPLE IN THE CENTER (Does not rotate - stays upright and still) */}
-      <div className="relative w-[64%] h-[64%] rounded-full overflow-hidden border border-[#D4CFC5] shadow-inner z-10 bg-[#FAF6EF]">
-        <Image
-          src={assetPath("/images/sri-lankan/couple_pure_center.png")}
-          alt="Amaya & Supun - Traditional Sri Lankan Wedding"
-          fill
-          className="object-contain scale-110"
+          className="mandala-statue-image"
           priority
         />
       </div>

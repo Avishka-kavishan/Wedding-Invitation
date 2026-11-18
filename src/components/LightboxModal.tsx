@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { GalleryPhoto } from "@/data/weddingData";
+import { assetPath } from "@/utils/paths";
 
 interface LightboxModalProps {
   photo: GalleryPhoto | null;
@@ -76,7 +77,7 @@ export function LightboxModal({
         onClick={(e) => e.stopPropagation()}
       >
         <Image
-          src={photo.url}
+          src={assetPath(photo.url)}
           alt={photo.title}
           fill
           className="object-contain"

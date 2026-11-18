@@ -34,7 +34,6 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        {/* Suppress disconnected Chrome extension / React DevTools bridge errors */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -67,7 +66,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased selection:bg-[#581C24] selection:text-white">
+      <body>
         {children}
       </body>
     </html>

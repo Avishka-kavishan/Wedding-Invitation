@@ -1,0 +1,94 @@
+/* Blessing Banner */
+.blessing-banner {
+  width: 100%;
+  background-color: #581C24;
+  color: white;
+  padding: 3.5rem 1.5rem;
+  margin: 2rem 0;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blessing-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.blessing-tag {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #E2BC6B;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.blessing-quote {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  color: #FAF6EF;
+  line-height: 1.625;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+
+.blessing-desc {
+  font-size: 0.75rem;
+  color: rgba(250, 246, 239, 0.85);
+  line-height: 1.625;
+  font-weight: 300;
+  max-width: 36rem;
+  margin: 0 auto 1.5rem;
+}
+
+.blessing-flourish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.blessing-line {
+  height: 1px;
+  width: 3rem;
+  background-color: rgba(200, 155, 60, 0.5);
+}
+
+.blessing-diamond {
+  color: #E2BC6B;
+  font-size: 0.75rem;
+}
+
+.blessing-signature {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: #E2BC6B;
+  letter-spacing: 0.025em;
+}
+
+@media (min-width: 640px) {
+  .blessing-banner {
+    padding: 5rem 2.5rem;
+  }
+
+  .blessing-tag {
+    font-size: 0.75rem;
+  }
+
+  .blessing-quote {
+    font-size: 1.875rem;
+  }
+
+  .blessing-desc {
+    font-size: 0.875rem;
+  }
+
+  .blessing-signature {
+    font-size: 1.5rem;
+  }
+}
